@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══ CSS VARIABLES ═══ */
+:root {
+  --primary: #0F2640;
+  --primary-mid: #1B3A5C;
+  --secondary: #2C5F8A;
+  --accent: #4A90C4;
+  --accent-light: #6BB3E8;
+  --gold: #C9A84C;
+  --neutral: #8A9AAF;
+  --neutral-light: #B8C5D4;
+  --bg-light: #F0F4F8;
+  --bg-white: #FAFBFD;
+  --text-dark: #0A1929;
+  --text-body: #3D5068;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(15,38,64,.08);
+  --shadow-md: 0 8px 30px rgba(15,38,64,.12);
+  --shadow-lg: 0 20px 60px rgba(15,38,64,.18);
+  --shadow-glow: 0 0 40px rgba(74,144,196,.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-body);
+  background: var(--bg-white);
+  overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Serif Display', serif;
+  color: var(--text-dark);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* ═══ SCROLL REVEAL SYSTEM ═══ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ═══ SECTION LABELS ═══ */
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ═══ FLOATING ANIMATION ═══ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ═══ WHATSAPP PULSE ═══ */
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 4px 30px rgba(37,211,102,.6); }
+}
+
+/* ═══ SCROLL INDICATOR ═══ */
+@keyframes pulse-scroll {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ═══ CONTACT FORM BUTTON OVERRIDE ═══ */
+#formulario form button[type="submit"] {
+  background: var(--gold) !important;
+  color: var(--primary) !important;
+  font-weight: 700;
+  border-radius: 9999px;
+  transition: all 0.3s;
+}
+#formulario form button[type="submit"]:hover {
+  background: #b8963f !important;
+}

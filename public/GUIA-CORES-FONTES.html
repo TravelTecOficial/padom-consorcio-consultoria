@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referência - Cores e Fontes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #0066FF;
+            padding-bottom: 10px;
+        }
+
+        .cores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cor-item {
+            text-align: center;
+        }
+
+        .cor-box {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .cor-info {
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .cor-info p {
+            margin: 5px 0;
+        }
+
+        .cor-nome {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cor-hex {
+            font-family: 'Courier New', monospace;
+            color: #666;
+        }
+
+        .tipografia-exemplo {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #0066FF;
+            border-radius: 4px;
+        }
+
+        .tipografia-exemplo h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .titulo-exemplo {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .subtitulo-exemplo {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+
+        .body-exemplo {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .pequeno-exemplo {
+            font-size: 14px;
+            margin: 20px 0;
+        }
+
+        .instrucoes {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .instrucoes h4 {
+            margin-bottom: 10px;
+            color: #1976d2;
+        }
+
+        .instrucoes ul {
+            margin-left: 20px;
+        }
+
+        .instrucoes li {
+            margin: 5px 0;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Referência de Cores e Tipografia</h1>
+
+        <!-- CORES -->
+        <div class="section">
+            <h2>Paleta de Cores</h2>
+
+            <div class="cores-grid">
+                <div class="cor-item">
+                    <div class="cor-box" style="background: #0066FF;"></div>
+                    <div class="cor-info">
+                        <div class="cor-nome">Primária</div>
+                        <div class="cor-hex">#0066FF</div>
+                        <div style="margin-top: 5px; font-size: 12px;">RGB(0, 102, 255)</div>
+                    </div>
+                </div>
+
+                <div class="cor-item">
+                    <div class="cor-box" style="background: #FF6B35;"></div>
+                    <div class="cor-info">
+                        <div class="cor-nome">Secundária</div>
+                        <div class="cor-hex">#FF6B35</div>
+                        <div style="margin-top: 5px; font-size: 12px;">RGB(255, 107, 53)</div>
+                    </div>
+                </div>
+
+                <div class="cor-item">
+                    <div class="cor-box" style="background: #10B981;"></div>
+                    <div class="cor-info">
+                        <div class="cor-nome">Sucesso</div>
+                        <div class="cor-hex">#10B981</div>
+                        <div style="margin-top: 5px; font-size: 12px;">RGB(16, 185, 129)</div>
+                    </div>
+                </div>
+
+                <div class="cor-item">
+                    <div class="cor-box" style="background: #F59E0B;"></div>
+                    <div class="cor-info">
+                        <div class="cor-nome">Alerta</div>
+                        <div class="cor-hex">#F59E0B</div>
+                        <div style="margin-top: 5px; font-size: 12px;">RGB(245, 158, 11)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instrucoes">
+                <h4>📝 Como Customizar</h4>
+                <ul>
+                    <li>Abra <code>tailwind.config.js</code></li>
+                    <li>Procure pela seção <code>theme.extend.colors</code></li>
+                    <li>Atualize os valores HEX das cores</li>
+                    <li>Reinicie: <code>npm run dev</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TIPOGRAFIA -->
+        <div class="section">
+            <h2>Tipografia</h2>
+
+            <div class="tipografia-exemplo">
+                <h3>Fonte Principal: Inter</h3>
+                <div class="titulo-exemplo">Isso é um Título H1 (32px, Bold)</div>
+                <div class="subtitulo-exemplo">Isso é um Subtítulo H2 (20px, Semibold)</div>
+                <div class="body-exemplo">Isso é um parágrafo body (16px, Regular). Use para descrições longas, textos informativos e conteúdo principal. A altura de linha padrão é 1.6 para legibilidade.</div>
+                <div class="pequeno-exemplo">Isso é um texto pequeno (14px) usado para labels, hints e informações secundárias.</div>
+            </div>
+
+            <div class="tipografia-exemplo">
+                <h3>Fonte Secundária: Playfair Display</h3>
+                <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: bold; margin: 20px 0;">Essa é a Fonte Secundária</div>
+                <p>Usada geralmente para títulos especiais e seções destaque que precisam de mais impacto visual.</p>
+            </div>
+
+            <div class="instrucoes">
+                <h4>📝 Como Customizar</h4>
+                <ul>
+                    <li>Abra <code>tailwind.config.js</code></li>
+                    <li>Procure pela seção <code>theme.extend.fontFamily</code></li>
+                    <li>Atualize os nomes das fontes</li>
+                    <li>Certifique que as fontes estão importadas em <code>src/index.css</code></li>
+                    <li>Reinicie: <code>npm run dev</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- GUIA RÁPIDO -->
+        <div class="section">
+            <h2>Guia Rápido de Uso</h2>
+
+            <h3>Para Atualizar Cores:</h3>
+            <ol style="margin-left: 20px;">
+                <li>Edite <code>tailwind.config.js</code></li>
+                <li>Atualize valores em <code>theme.extend.colors</code></li>
+                <li>Use classes como <code>bg-primary</code>, <code>text-secondary</code>, etc</li>
+            </ol>
+
+            <h3 style="margin-top: 20px;">Para Atualizar Fontes:</h3>
+            <ol style="margin-left: 20px;">
+                <li>Edite <code>tailwind.config.js</code></li>
+                <li>Atualize valores em <code>theme.extend.fontFamily</code></li>
+                <li>Use classes como <code>font-principal</code>, <code>font-secundaria</code>, etc</li>
+            </ol>
+
+            <h3 style="margin-top: 20px;">Exemplo em React:</h3>
+            <pre style="background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto;"><code>&lt;h1 className="text-4xl font-bold text-primary"&gt;
+  Meu Título
+&lt;/h1&gt;
+
+&lt;p className="text-base text-gray-600 font-principal"&gt;
+  Meu parágrafo
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <!-- REFERÊNCIAS VISUAIS -->
+        <div class="section">
+            <h2>Referências Visuais</h2>
+            <p>Você pode adicionar imagens PNG/JPG desta paleta em:</p>
+            <code style="display: block; padding: 10px; background: #f5f5f5; margin-top: 10px; border-radius: 4px;">
+                /public/assets/referencias/
+            </code>
+
+            <div class="instrucoes">
+                <h4>Sugestões:</h4>
+                <ul>
+                    <li><strong>paleta-cores.png</strong> - Screenshot desta página ou imagem equivalente</li>
+                    <li><strong>tipografia.png</strong> - Exemplos das fontes em uso</li>
+                    <li><strong>guia-visual.png</strong> - Guia completo com brand guidelines</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
