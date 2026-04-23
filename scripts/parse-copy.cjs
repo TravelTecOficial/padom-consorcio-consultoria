@@ -451,6 +451,13 @@ export const siteConfig = {
       { name: "nome", type: "text", label: "Nome", placeholder: "Seu nome", required: true },
       { name: "email", type: "email", label: "E-mail", placeholder: "seu@email.com", required: true },
       { name: "telefone", type: "phone", label: "Telefone", placeholder: "(11) 99999-9999", required: false },
+      { name: "tipoBem", type: "select", label: "Tipo de bem", placeholder: "Selecione", required: true, options: [
+        { value: "veiculos", label: "Veículos" },
+        { value: "imoveis", label: "Imóveis" },
+        { value: "servicos", label: "Serviços" },
+        { value: "outros", label: "Outros" },
+      ]},
+      { name: "valor", type: "text", label: "Valor desejado", placeholder: "Valor aproximado do bem", required: true },
       { name: "mensagem", type: "textarea", label: "Mensagem", placeholder: "Sua mensagem", required: false },
     ],
     webhookUrl: "${escapeForTs(extractValue(formularioSection, 'Webhook URL') || 'https://webhook.site/seu-id')}",

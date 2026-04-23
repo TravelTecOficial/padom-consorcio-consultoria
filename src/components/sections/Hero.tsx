@@ -28,6 +28,11 @@ export default function Hero({ config }: any) {
     document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToNextSection = () => {
+    const heroHeight = sectionRef.current?.offsetHeight ?? window.innerHeight;
+    window.scrollTo({ top: heroHeight, behavior: 'smooth' });
+  };
+
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center bg-client-primary overflow-hidden">
       <div className="absolute inset-0 opacity-30 blur-[1px]" style={{ background: `url('${config.imagemUrl}') center/cover no-repeat` }} />
@@ -78,10 +83,15 @@ export default function Hero({ config }: any) {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] text-white/40 text-xs uppercase tracking-[2px] flex flex-col items-center gap-2 animate-[pulse-scroll_2s_ease-in-out_infinite]">
+      <button
+        type="button"
+        onClick={scrollToNextSection}
+        aria-label="Rolar para a próxima seção"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3] text-white/40 hover:text-client-gold text-xs uppercase tracking-[2px] flex flex-col items-center gap-2 animate-[pulse-scroll_2s_ease-in-out_infinite] cursor-pointer bg-transparent border-0 transition-colors duration-300"
+      >
         Saiba mais
         <ChevronDown className="w-5 h-5" />
-      </div>
+      </button>
     </section>
   );
 }
