@@ -16,11 +16,11 @@ export default function CTAFinal({ config }: any) {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-client-primary relative overflow-hidden text-center">
+    <section ref={ref} className="py-16 sm:py-20 bg-client-primary relative overflow-hidden text-center">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(74,144,196,.2)_0%,transparent_60%)]" />
-      <div className="max-w-[1200px] mx-auto px-8 relative z-10">
-        <h2 className="font-display text-[clamp(2rem,3.5vw,3rem)] text-white max-w-[600px] mx-auto mb-4 reveal">{config.titulo}</h2>
-        <p className="text-[1.05rem] text-white/70 max-w-[500px] mx-auto mb-10 leading-relaxed reveal">{config.descricao}</p>
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 relative z-10">
+        <h2 className="font-display text-[clamp(1.8rem,3.5vw,3rem)] text-white max-w-[600px] mx-auto mb-4 reveal">{config.titulo}</h2>
+        <p className="text-[1rem] sm:text-[1.05rem] text-white/70 max-w-[500px] mx-auto mb-8 sm:mb-10 leading-relaxed reveal">{config.descricao}</p>
 
         <div className="reveal">
           <button
@@ -32,10 +32,11 @@ export default function CTAFinal({ config }: any) {
           </button>
         </div>
 
-        <div className="flex justify-center gap-8 mt-8 reveal">
+        {/* Feature list — column on mobile, row on sm+ */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-8 mt-8 reveal">
           {['Sem compromisso', 'Análise gratuita', 'Consultores especializados'].map((text, i) => (
             <div key={i} className="flex items-center gap-1.5 text-white/50 text-sm font-medium">
-              <Check className="w-4 h-4 text-client-gold" /> {text}
+              <Check className="w-4 h-4 text-client-gold flex-shrink-0" /> {text}
             </div>
           ))}
         </div>

@@ -14,8 +14,8 @@ export default function Formulario({ config }: any) {
   }, []);
 
   return (
-    <section ref={ref} id="formulario" className="py-20 bg-client-bg-white">
-      <div className="max-w-[1200px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section ref={ref} id="formulario" className="py-16 sm:py-20 bg-client-bg-white">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         {/* Contact info */}
         <div className="reveal">
           <span className="section-label">Fale conosco</span>
@@ -39,7 +39,7 @@ export default function Formulario({ config }: any) {
         </div>
 
         {/* Form card */}
-        <div className="bg-white rounded-[20px] p-10 shadow-[0_20px_60px_rgba(15,38,64,.18)] border border-[rgba(15,38,64,.06)] reveal">
+        <div className="bg-white rounded-[20px] p-6 sm:p-10 shadow-[0_20px_60px_rgba(15,38,64,.18)] border border-[rgba(15,38,64,.06)] reveal">
           <h3 className="font-display text-xl text-client-primary mb-1">Solicitar análise gratuita</h3>
           <p className="text-sm text-client-text mb-6">Sem compromisso. Seus dados são 100% seguros.</p>
           <ContactForm
@@ -47,6 +47,7 @@ export default function Formulario({ config }: any) {
             webhookUrl={config.webhookUrl}
             redirectUrl={config.redirectUrl}
             buttonText={config.botaoTexto}
+            companyId={siteConfig.analytics.companyId}
           />
         </div>
       </div>

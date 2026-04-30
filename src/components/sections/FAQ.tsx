@@ -14,12 +14,12 @@ export default function FAQ({ config }: any) {
   }, []);
 
   return (
-    <section ref={ref} id="faq" className="py-24 bg-client-bg">
-      <div className="max-w-[1200px] mx-auto px-8">
+    <section ref={ref} id="faq" className="py-16 sm:py-24 bg-client-bg">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8">
         <div className="text-center"><span className="section-label reveal">Tire suas dúvidas</span></div>
-        <h2 className="font-display text-[clamp(2rem,3.5vw,3rem)] text-client-text-dark text-center mb-4 reveal">{config.titulo}</h2>
+        <h2 className="font-display text-[clamp(1.8rem,3.5vw,3rem)] text-client-text-dark text-center mb-4 reveal">{config.titulo}</h2>
 
-        <div className="max-w-[800px] mx-auto mt-12 flex flex-col gap-4">
+        <div className="max-w-[800px] mx-auto mt-10 sm:mt-12 flex flex-col gap-4">
           {config.itens.map((item: any, i: number) => {
             const isOpen = openId === item.id;
             return (

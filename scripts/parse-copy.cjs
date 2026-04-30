@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const copyPath = path.join(__dirname, '../copy.md');
+const copyPath = path.join(__dirname, '../copywriting.md');
 const configPath = path.join(__dirname, '../src/lib/config.ts');
 const indexPath = path.join(__dirname, '../index.html');
 const tailwindPath = path.join(__dirname, '../tailwind.config.js');
@@ -20,7 +20,7 @@ const escapeForTs = (str) => {
 };
 
 if (!fs.existsSync(copyPath)) {
-  console.error('❌ Arquivo copy.md não encontrado!');
+  console.error('❌ Arquivo copywriting.md não encontrado!');
   process.exit(1);
 }
 
@@ -165,8 +165,97 @@ export default {
   console.log('✅ tailwind.config.js atualizado com cores e fontes');
 }
 
+// Função: validar copywriting.md antes do parse
+function validateCopywriting(content) {
+  const errors = [];
+  const warnings = [];
+
+  // Seções obrigatórias
+  const requiredSections = [
+    '## Meta',
+    '## 1. HERO',
+    '## 2. PROBLEMAS',
+    '## 11. FORMULÁRIO',
+    '## WHATSAPP',
+  ];
+  for (const section of requiredSections) {
+    if (!content.includes(section)) {
+      errors.push(`Seção obrigatória ausente: "${section}"`);
+    }
+  }
+
+  // Placeholders não preenchidos (texto entre colchetes, exceto paths de assets)
+  const placeholderMatches = [...content.matchAll(/\[(?!assets|\/assets|https?:\/\/)[^\]]{3,80}\]/g)];
+  if (placeholderMatches.length > 0) {
+    warnings.push(
+      `${placeholderMatches.length} placeholder(s) não preenchido(s): ` +
+      placeholderMatches.slice(0, 3).map(m => m[0]).join(', ') +
+      (placeholderMatches.length > 3 ? '...' : '')
+    );
+  }
+
+  // Validar formato hex das cores (apenas na seção Paleta de Cores)
+  const paletaMatch = content.match(/##\s+Paleta de Cores\s+([\s\S]*?)(?=##|$)/);
+  if (paletaMatch) {
+    const paletaSection = paletaMatch[1];
+    const colorFieldRegex = /-\s*\*\*(Primária|Secundária|Destaque[^*]*|Neutra|Fundo[^*]*)\*\*:\s*([^\n]+)/g;
+    let colorMatch;
+    while ((colorMatch = colorFieldRegex.exec(paletaSection)) !== null) {
+      const value = colorMatch[2].trim();
+      if (!value.startsWith('[') && !/#[0-9A-Fa-f]{6}/.test(value)) {
+        errors.push(`Cor inválida para "${colorMatch[1]}": "${value}" — esperado #RRGGBB (ex: #1B3A5C)`);
+      }
+    }
+  }
+
+  // Validar Webhook URL
+  const webhookMatch = content.match(/-\s*\*\*Webhook URL\*\*:\s*([^\n]+)/i);
+  if (webhookMatch) {
+    const url = webhookMatch[1].trim();
+    if (url && !url.startsWith('[') && !url.startsWith('https://')) {
+      errors.push(`Webhook URL inválida: "${url}" — deve começar com https://`);
+    }
+  }
+
+  // Validar nomes de ícones nos Benefícios
+  const validIcons = [
+    'rocket','heart','zap','shield','target','award','check','star',
+    'users','clock','map-pin','phone','mail','dollar-sign','trending-up',
+    'thumbs-up','bar-chart','lock','globe','home','building','car',
+    'plane','compass','briefcase','handshake','trophy','lightbulb',
+  ];
+  const iconMatches = [...content.matchAll(/-\s*[ÍI]cone:\s*(\S+)/g)];
+  for (const iconMatch of iconMatches) {
+    const icon = iconMatch[1].trim();
+    if (!icon.startsWith('[') && !validIcons.includes(icon)) {
+      warnings.push(`Ícone desconhecido: "${icon}". Válidos: ${validIcons.join(', ')}`);
+    }
+  }
+
+  return { errors, warnings };
+}
+
 try {
   const content = fs.readFileSync(copyPath, 'utf-8');
+
+  // Validar copywriting.md antes de processar
+  const validation = validateCopywriting(content);
+
+  if (validation.warnings.length > 0) {
+    console.log('\n⚠️  Avisos:');
+    validation.warnings.forEach(w => console.log(`   ${w}`));
+  }
+
+  if (validation.errors.length > 0) {
+    console.error('\n❌ Erros encontrados em copywriting.md:');
+    validation.errors.forEach(e => console.error(`   • ${e}`));
+    console.error('\nCorrija os erros acima antes de continuar.');
+    process.exit(1);
+  }
+
+  if (validation.warnings.length > 0 || validation.errors.length === 0) {
+    console.log('✅ copywriting.md válido\n');
+  }
 
   // Função auxiliar para extrair valor após "-" (case-insensitive para a key)
   const extractValue = (section, key) => {
@@ -182,7 +271,7 @@ try {
     return match ? match[1] : '';
   };
 
-  console.log('📖 Lendo copy.md...');
+  console.log('📖 Lendo copywriting.md...');
 
   // Extrair informações básicas
   const metaSectionStart = extractSection(content, 'Meta');
@@ -234,7 +323,7 @@ try {
   // Extrair benefícios com regex robusto
   const parseBeneficios = (section) => {
     const beneficios = [];
-    const benefRegex = /- \*\*Benefício (\d)\*\*:[\s\S]*?- Ícone:\s*(\S+)[\s\S]*?- Título:\s*([^\n]+)[\s\S]*?- Descrição:\s*([^\n]+?)(?=\n- \*\*Benefício|\n\s*\n---|\n---|\n##|$)/g;
+    const benefRegex = /- \*\*Benefício (\d)\*\*:[\s\S]*?- Ícone:\s*(\S+)[\s\S]*?- Título:\s*([^\n]+)[\s\S]*?- Descrição:\s*([^\n]+?)(?=\n- \*\*Benefício|\n- \*\*Mostrar|\n\s*\n---|\n---|\n##|$)/g;
     let match;
     while ((match = benefRegex.exec(section)) !== null) {
       beneficios.push({
@@ -306,6 +395,26 @@ try {
     }
     return false;
   };
+
+  // Extrair stats do Benefícios
+  const parseStats = (section) => {
+    const stats = [];
+    const showStats = checkSim(section, ['Mostrar Estatísticas\\?']);
+    if (!showStats) return [];
+    for (let i = 1; i <= 4; i++) {
+      const valor = extractValue(section, `Estatística ${i} Valor`);
+      const label = extractValue(section, `Estatística ${i} Label`);
+      if (valor && label) {
+        stats.push({ id: i, valor: escapeForTs(valor), label: escapeForTs(label) });
+      }
+    }
+    return stats;
+  };
+
+  const stats = parseStats(beneficiosSection);
+  const statsStr = stats.length > 0
+    ? stats.map(s => `{ id: ${s.id}, valor: "${s.valor}", label: "${s.label}" }`).join(',\n      ')
+    : '';
 
   const showMapa = checkSim(mapaSection, ['Mostrar Mapa\\?', 'Exibir Mapa\\?']);
   const showAvaliacoes = checkSim(avaliacoeSection, ['Mostrar Avaliações Google\\?', 'Mostrar Avaliações\\?', 'Mostrar Reviews\\?']);
@@ -393,6 +502,9 @@ export const siteConfig = {
     itens: [
       ${beneficiosStr}
     ],
+    stats: [
+      ${statsStr}
+    ],
   },
 
   // Como Funciona
@@ -457,7 +569,7 @@ export const siteConfig = {
         { value: "servicos", label: "Serviços" },
         { value: "outros", label: "Outros" },
       ]},
-      { name: "valor", type: "text", label: "Valor desejado", placeholder: "Valor aproximado do bem", required: true },
+      { name: "valor", type: "currency", label: "Valor desejado (R$)", placeholder: "Ex: 500.000", required: true },
       { name: "mensagem", type: "textarea", label: "Mensagem", placeholder: "Sua mensagem", required: false },
     ],
     webhookUrl: "${escapeForTs(extractValue(formularioSection, 'Webhook URL') || 'https://webhook.site/seu-id')}",
@@ -509,6 +621,7 @@ export const siteConfig = {
     googleAnalyticsId: "${extractValue(metaSection, 'Google Analytics ID') || ''}",
     googleTagManagerId: "${extractValue(metaSection, 'GTM ID') || ''}",
     pixelFacebook: "${extractValue(metaSection, 'Pixel Facebook') || ''}",
+    companyId: "${escapeForTs(extractValue(metaSection, 'Company ID') || '')}",
   },
 
   // Seções a exibir

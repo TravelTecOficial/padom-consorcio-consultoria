@@ -7,6 +7,7 @@
 - **Descrição Meta**: Consultoria personalizada em consórcio de veículos e imóveis. Análise de perfil, estratégia de lances e acompanhamento até a contemplação. Zona Norte de SP.
 - **URL da Página**: https://www.padomseguros.com.br/
 - **GTM ID**: GTM-PXWG9MP
+- **Company ID**: company-3B25DCopQh9A4elMsemkKAB9W1Z
 - **Empresa**: Padom Seguros
 - **Segmento**: Consultoria em Consórcio de Veículos e Imóveis
 - **Produto/Serviço**: Consultoria personalizada para aquisição de bens via consórcio
@@ -36,7 +37,7 @@
 ---
 
 ## Logo
-- **Arquivo**: /assets/logos/padom-logo.png
+- **Arquivo**: /assets/logos/logo-principal.png
 - **Fundo**: Transparente (PNG)
 
 ---
@@ -46,7 +47,7 @@
 - **Título**: Consórcio certo, no momento certo, para você
 - **Subtítulo**: Há 29 anos analisamos seu perfil e entregamos o melhor plano — com estratégia real para sua contemplação
 - **CTA**: Solicitar minha análise gratuita
-- **Imagem Hero**: /assets/imagens/hero.jpg
+- **Imagem Hero**: /assets/imagens/hero.png
 
 ---
 
@@ -84,6 +85,15 @@
   - Ícone: heart
   - Título: Parceiro de longo prazo
   - Descrição: Pós-venda acompanhado de perto — do trâmite administrativo até a entrega do crédito. Um parceiro para planejar suas próximas aquisições.
+- **Mostrar Estatísticas?**: sim
+- **Estatística 1 Valor**: R$ 15M
+- **Estatística 1 Label**: Em cotas gerenciadas
+- **Estatística 2 Valor**: 120+
+- **Estatística 2 Label**: Clientes contemplados
+- **Estatística 3 Valor**: 95%
+- **Estatística 3 Label**: De acerto
+- **Estatística 4 Valor**: 5★
+- **Estatística 4 Label**: No Google
 
 ---
 
@@ -169,7 +179,7 @@
 
 ## PÁGINA DE OBRIGADO
 
-- **Logo**: /assets/logos/padom-logo.png
+- **Logo**: /assets/logos/logo-principal.png
 - **Título**: Obrigado pelo contato!
 - **Descrição**: Recebemos sua mensagem e um consultor da Padom entrará em contato em breve. Se preferir falar agora, estamos no WhatsApp.
 - **Link WhatsApp**: 5511968350088

@@ -21,7 +21,7 @@ export interface GoogleReviewsProps {
 
 export interface FormField {
   name: string;
-  type: 'text' | 'email' | 'phone' | 'textarea' | 'select';
+  type: 'text' | 'email' | 'phone' | 'textarea' | 'select' | 'currency';
   placeholder: string;
   label: string;
   required: boolean;
@@ -35,6 +35,8 @@ export interface ContactFormProps {
   buttonText?: string;
   title?: string;
   description?: string;
+  companyId?: string;
+  source?: string;
   onSuccess?: (data: Record<string, any>) => void;
   onError?: (error: Error) => void;
 }

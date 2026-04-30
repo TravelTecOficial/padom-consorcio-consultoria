@@ -31,7 +31,7 @@ export const siteConfig = {
     titulo: "Consórcio certo, no momento certo, para você",
     subtitulo: "Há 29 anos analisamos seu perfil e entregamos o melhor plano — com estratégia real para sua contemplação",
     cta: "Solicitar minha análise gratuita",
-    imagemUrl: "/assets/imagens/hero.jpg",
+    imagemUrl: "/assets/imagens/hero.png",
   },
 
   // Problemas
@@ -62,6 +62,12 @@ export const siteConfig = {
       { id: 1, icone: "target", titulo: "Previsibilidade real", descricao: "Mais de 95% de acerto no prazo de contemplação. Você sabe quando vai chegar lá — não fica no escuro esperando a sorte." },
       { id: 2, icone: "shield", titulo: "Segurança na decisão", descricao: "Mais de 120 clientes contemplados e R$15 milhões em cotas gerenciadas. 29 anos de mercado e média 5 estrelas no Google." },
       { id: 3, icone: "heart", titulo: "Parceiro de longo prazo", descricao: "Pós-venda acompanhado de perto — do trâmite administrativo até a entrega do crédito. Um parceiro para planejar suas próximas aquisições." }
+    ],
+    stats: [
+      { id: 1, valor: "R$ 15M", label: "Em cotas gerenciadas" },
+      { id: 2, valor: "120+", label: "Clientes contemplados" },
+      { id: 3, valor: "95%", label: "De acerto" },
+      { id: 4, valor: "5★", label: "No Google" }
     ],
   },
 
@@ -131,7 +137,7 @@ export const siteConfig = {
         { value: "servicos", label: "Serviços" },
         { value: "outros", label: "Outros" },
       ]},
-      { name: "valor", type: "text", label: "Valor desejado", placeholder: "Valor aproximado do bem", required: true },
+      { name: "valor", type: "currency", label: "Valor desejado (R$)", placeholder: "Ex: 500.000", required: true },
       { name: "mensagem", type: "textarea", label: "Mensagem", placeholder: "Sua mensagem", required: false },
     ],
     webhookUrl: "https://jobs.traveltec.com.br/webhook/recebe-forms",
@@ -158,7 +164,7 @@ export const siteConfig = {
   paginaObrigado: {
     titulo: "Obrigado pelo contato!",
     descricao: "Recebemos sua mensagem e um consultor da Padom entrará em contato em breve. Se preferir falar agora, estamos no WhatsApp.",
-    logoUrl: "/assets/logos/padom-logo.png",
+    logoUrl: "/assets/logos/logo-principal.png",
     tempoRedirecionamento: 0,
     urlAposobrigado: "",
   },
@@ -183,6 +189,7 @@ export const siteConfig = {
     googleAnalyticsId: "",
     googleTagManagerId: "GTM-PXWG9MP",
     pixelFacebook: "",
+    companyId: "company-3B25DCopQh9A4elMsemkKAB9W1Z",
   },
 
   // Seções a exibir
